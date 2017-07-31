@@ -4,9 +4,83 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeHouseManager"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="Coffee house management" Height="600" Width="1050"
+        Closing="MainWindow_Closing">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+
+        <Menu>
+            <MenuItem Header="_Data">
+                <MenuItem Header="T_oday info"></MenuItem>
+                <MenuItem Header="_Revenue comparison"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Account">
+                <MenuItem Header="_Change Password" Click="ChangePass_Click"></MenuItem>
+                <MenuItem Header="Account _info"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Abou_t">
+                <MenuItem Header="_This restaurant"></MenuItem>
+                <MenuItem Header="Application c_reator"></MenuItem>
+            </MenuItem>
+        </Menu>
+
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+
+            <Border BorderThickness="1 0 0 0" BorderBrush="Red" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="80"></ColumnDefinition>
+                            <ColumnDefinition Width="50"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <ComboBox x:Name="cmbCategory" Margin="5 7">Choose a category</ComboBox>
+                            <ComboBox x:Name="cmbFood" Margin="5 7" Grid.Row="1">Choose a food</ComboBox>
+
+                        </Grid>
+
+                        <Button x:Name="btnAddFood" Margin="10 15" Grid.Column="1">Add</Button>
+
+                        <TextBox x:Name="txbCountFoodAdding" FontSize="20" TextAlignment="Center" Grid.Column="2" Margin="0 20" BorderThickness="0 0 0 1" BorderBrush="Red" Text="1" KeyDown="txbCountFoodAdding_KeyDown" ></TextBox>
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Button x:Name="btnDiscount" Margin="15" Grid.Column="2">Discount</Button>
+                    </Grid>
+                </Grid>
+
+            </Border>
+        </Grid>
+
     </Grid>
+    
 </Window>
