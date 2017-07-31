@@ -283,6 +283,23 @@
             </TabItem>
             <TabItem Header="User management">
                 <ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.5*"></ColumnDefinition>
+                                    <ColumnDefinition Width="1*"></ColumnDefinition>
+                                    <ColumnDefinition Width="0.3*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock x:Name="txblIndex"></TextBlock>
+                                <TextBlock x:Name="txblUsername" Grid.Column="1"></TextBlock>
+                                <TextBlock x:Name="txblDisplayName" Grid.Column="2"></TextBlock>
+                                <Button x:Name="btnDeleteAccount" Grid.Column="3"></Button>
+                            </Grid>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
                 </ListView>
             </TabItem>
         </TabControl>
