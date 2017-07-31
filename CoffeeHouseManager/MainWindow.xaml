@@ -17,6 +17,7 @@
             <MenuItem Header="_Data">
                 <MenuItem Header="T_oday info"></MenuItem>
                 <MenuItem Header="_Revenue comparison"></MenuItem>
+                <MenuItem Header="Admin mode" Click="AdminMode_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Account">
                 <MenuItem Header="_Change Password" Click="ChangePass_Click"></MenuItem>
@@ -24,19 +25,20 @@
             </MenuItem>
             <MenuItem Header="Abou_t">
                 <MenuItem Header="_This restaurant"></MenuItem>
-                <MenuItem Header="Application c_reator"></MenuItem>
+                <MenuItem Header="Application c_reator" Click="AppCreator_Click"></MenuItem>
             </MenuItem>
         </Menu>
 
 
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="71*"></ColumnDefinition>
+                <ColumnDefinition Width="450*"/>
+                <ColumnDefinition Width="521*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
 
-            <Border BorderThickness="1 0 0 0" BorderBrush="Red" Grid.Column="1">
+            <Border BorderThickness="1 0 0 0" BorderBrush="Red" Grid.Column="2">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="80"></RowDefinition>
@@ -57,8 +59,8 @@
                                 <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
 
-                            <ComboBox x:Name="cmbCategory" Margin="5 7">Choose a category</ComboBox>
-                            <ComboBox x:Name="cmbFood" Margin="5 7" Grid.Row="1">Choose a food</ComboBox>
+                            <ComboBox x:Name="cmbCategory" Margin="5 7 5 3">Choose a category</ComboBox>
+                            <ComboBox x:Name="cmbFood" Margin="5 4 5 7" Grid.Row="1">Choose a food</ComboBox>
 
                         </Grid>
 
@@ -82,5 +84,5 @@
         </Grid>
 
     </Grid>
-    
+
 </Window>

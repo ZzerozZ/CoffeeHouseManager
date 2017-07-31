@@ -1,0 +1,290 @@
+﻿<Window x:Class="CoffeeHouseManager.AdminWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoffeeHouseManager"
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="AdminWindow" Height="300" Width="600">
+    <Grid>
+        <TabControl>
+            <TabItem Header="Food">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnAddNewFood" Margin="5">Add new</Button>
+                            <Button x:Name="btnEditFood" Grid.Column="1" Margin="5">Edit</Button>
+                            <Button x:Name="btnDeleteFood" Grid.Column="2" Margin="5">Delete</Button>
+                            <Button x:Name="btnViewAllFood" Grid.Column="3" Margin="5">View</Button>
+                        </Grid>
+
+                        <DataGrid x:Name="dgvFood" Grid.Row="1"></DataGrid>
+                    </Grid>
+
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="txbSearchFood" Margin="10" BorderThickness="0 0 0 1"></TextBox>
+                            <Button x:Name="btnSearchFood" Grid.Column="1" Margin="5">Search</Button>
+                        </Grid>
+
+                        <StackPanel Grid.Row="1">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="10 0">ID</TextBlock>
+                                <TextBox x:Name="txbIDInFoodTabControl" IsEnabled="False" Grid.Column="1" Margin="5 0" BorderThickness="0 0 0 1"></TextBox>
+                            </Grid>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="10 0">Name</TextBlock>
+                                <TextBox x:Name="txbFoodNameInFoodTabControl" IsEnabled="False" Grid.Column="1" Margin="5 0" BorderThickness="0 0 0 1"></TextBox>
+                            </Grid>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="10 0">Category</TextBlock>
+                                <TextBox x:Name="txbCategoryInFoodTabControl" IsEnabled="False" Grid.Column="1" Margin="5 0" BorderThickness="0 0 0 1"></TextBox>
+                            </Grid>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="10 0">Price</TextBlock>
+                                <TextBox x:Name="txbPriceInFoodTabControl" IsEnabled="False" Grid.Column="1" Margin="5 0" BorderThickness="0 0 0 1"></TextBox>
+                            </Grid>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Table">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnAddNewTable" Margin="5">Add new</Button>
+                            <Button x:Name="btnEditTable" Grid.Column="1" Margin="5">Edit</Button>
+                            <Button x:Name="btnDeleteTable" Grid.Column="2" Margin="5">Delete</Button>
+                            <Button x:Name="btnViewAllTable" Grid.Column="3" Margin="5">View</Button>
+                        </Grid>
+
+                        <DataGrid x:Name="dgvTable" Grid.Row="1"></DataGrid>
+                    </Grid>
+
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="txbSearchTable" Margin="10" BorderThickness="0 0 0 1"></TextBox>
+                            <Button x:Name="btnSearchTable" Grid.Column="1" Margin="5">Search</Button>
+                        </Grid>
+
+                        <StackPanel Grid.Row="1">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="10 0">ID</TextBlock>
+                                <TextBox x:Name="txbIDInTableTabControl" IsEnabled="False" Grid.Column="1" Margin="5 0" BorderThickness="0 0 0 1"></TextBox>
+                            </Grid>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="10 0">table status</TextBlock>
+                                <TextBox x:Name="txbTableStatusInTableTabControl" IsEnabled="False" Grid.Column="1" Margin="5 0" BorderThickness="0 0 0 1"></TextBox>
+                            </Grid>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Revenue">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50"></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition Width="100"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="15">From</TextBlock>
+                            <DatePicker x:Name="dpkFrom" Grid.Column="1"  Margin="15 10" BorderThickness="0 0 0 1"></DatePicker>
+
+                        </Grid>
+
+                        <Grid Grid.Column="1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="60"></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Margin="15">To</TextBlock>
+                            <DatePicker x:Name="dpkTo" Grid.Column="1"  Margin="15 10" BorderThickness="0 0 0 1"></DatePicker>
+
+                        </Grid>
+
+                        <Button x:Name="btnViewRevenue" Margin="5 10" Grid.Column="2">View</Button>
+
+                    </Grid>
+                    
+                    <DataGrid x:Name="dgvAnalytic" AlternatingRowBackground="Azure" Grid.Row="1"></DataGrid>
+                    
+                </Grid>
+               
+            </TabItem>
+            <TabItem Header="Category">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="btnAddNewCategory" Margin="5">Add new</Button>
+                            <Button x:Name="btnEditCategory" Grid.Column="1" Margin="5">Edit</Button>
+                            <Button x:Name="btnDeleteCategory" Grid.Column="2" Margin="5">Delete</Button>
+                            <Button x:Name="btnViewAllCategory" Grid.Column="3" Margin="5">View</Button>
+                        </Grid>
+
+                        <DataGrid x:Name="dgvCategory" Grid.Row="1"></DataGrid>
+                    </Grid>
+
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBox x:Name="txbSearchCategory" Margin="10" BorderThickness="0 0 0 1"></TextBox>
+                            <Button x:Name="btnSearchCategory" Grid.Column="1" Margin="5">Search</Button>
+                        </Grid>
+
+                        <StackPanel Grid.Row="1">
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="10 0">ID</TextBlock>
+                                <TextBox x:Name="txbIDInCategoryTabControl" IsEnabled="False" Grid.Column="1" Margin="5 0" BorderThickness="0 0 0 1"></TextBox>
+                            </Grid>
+                            <Grid Margin="10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBlock Margin="10 0">Name</TextBlock>
+                                <TextBox x:Name="txbCategoryNameInCategoryTabControl" IsEnabled="False" Grid.Column="1" Margin="5 0" BorderThickness="0 0 0 1"></TextBox>
+                            </Grid>
+                        </StackPanel>
+
+                    </Grid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="User management">
+                <ListView>
+                </ListView>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>

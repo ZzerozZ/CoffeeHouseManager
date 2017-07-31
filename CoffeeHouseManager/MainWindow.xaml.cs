@@ -40,5 +40,16 @@ namespace CoffeeHouseManager
         {
             Application.Current.Shutdown();
         }
+
+        private void AppCreator_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("This application was developed by Trọng Nghĩa(zzerodev)\n\nContact me at:\nFacebook: http:://facebook.com/zzerodev\nEmail: nghiaduong.170697@outlook.com.vn");
+        }
+
+        private void AdminMode_Click(object sender, RoutedEventArgs e)
+        {
+            AdminWindow admin = new AdminWindow();
+            admin.ShowDialog();
+        }
     }
 }
