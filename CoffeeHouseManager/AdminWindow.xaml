@@ -7,8 +7,8 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="AdminWindow" Height="300" Width="600">
     <Grid>
-        <TabControl>
-            <TabItem Header="Food">
+        <TabControl x:Name="tabMain">
+            <TabItem x:Name="TabFood" Header="Food">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -96,7 +96,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Table">
+            <TabItem x:Name="TabTable" Header="Table">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -166,7 +166,7 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="Revenue">
+            <TabItem x:Name="TabRevenue" Header="Revenue">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50"></RowDefinition>
@@ -211,7 +211,7 @@
                 </Grid>
                
             </TabItem>
-            <TabItem Header="Category">
+            <TabItem x:Name="TabCategory" Header="Category">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition></ColumnDefinition>
@@ -281,8 +281,8 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            <TabItem Header="User management">
-                <ListView>
+            <TabItem x:Name="TabUser" Header="User management">
+                <ListView x:Name="lsvAccount">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <Grid>
