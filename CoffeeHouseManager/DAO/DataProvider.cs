@@ -10,7 +10,15 @@ namespace CoffeeHouseManager.DAO
 {
     class DataProvider
     {
+        private static DataProvider instance;
+
         private string conectionString = "Data Source=NGHIA-ACER;Initial Catalog=CoffeeHouse;Integrated Security=True";
+
+        internal static DataProvider Instance
+        {
+            get { if (instance == null) instance = new DataProvider(); return instance; }
+            private set => instance = value;
+        }
 
         public DataTable ExecuteTable(string query, object[] parameter = null)
         {

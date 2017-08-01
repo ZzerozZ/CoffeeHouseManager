@@ -25,15 +25,38 @@ namespace CoffeeHouseManager
         public AdminWindow()
         {
             InitializeComponent();
+            GetAdminMode();
+        }
+
+        public void GetAdminMode()
+        {
+            GetFoodList();
+            GetTableList();
+            GetCategoryList();
             GetAccountList();
+        }
+        public void GetFoodList()
+        {
+            string query = "select * from dbo.FOOD";
+            dgvFood.ItemsSource = DataProvider.Instance.ExecuteTable(query).DefaultView;
+        }
+
+        public void GetTableList()
+        {
+            string query = "select * from dbo.CTABLE";
+            dgvTable.ItemsSource = DataProvider.Instance.ExecuteTable(query).DefaultView;
+        }
+
+        public void GetCategoryList()
+        {
+            string query = "select * from dbo.FOODCATEGORY";
+            dgvCategory.ItemsSource = DataProvider.Instance.ExecuteTable(query).DefaultView;
         }
 
         public void GetAccountList()
         {
-            string query = "EXEC dbo.USP_GetUserByUserName @UserName";
-
-            DataProvider provider = new DataProvider();
-            lsvAccount.ItemsSource = provider.ExecuteTable(query, new object[] { "nghia3"}).DefaultView;
+            string query = "select * from dbo.ACCOUNT";
+            lsvAccount.ItemsSource = DataProvider.Instance.ExecuteTable(query/*, new object[] { "nghia3"}*/).DefaultView;
         }
     }
 }

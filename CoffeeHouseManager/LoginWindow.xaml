@@ -5,8 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeHouseManager"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Login" Height="170" Width="375" Focusable="True"
-        Closing="Window_Closing">
+        Title="Login" Height="170" Width="375" Focusable="True">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid FocusManager.FocusedElement="{Binding ElementName=txbUserName}">
@@ -29,8 +28,18 @@
                 <PasswordBox x:Name="pwbPassword" FontSize="14" Grid.Column="1" Width="200" Margin="10 0 0 10" TabIndex="2"></PasswordBox>
             </Grid>
 
-            <Button x:Name="btnLogin" Width="60" FontSize="14" 
-                    Click="btnLogin_Click" TabIndex="3">Login</Button>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <Button x:Name="btnLogin" Width="70" FontSize="14" HorizontalAlignment="Right" 
+                    Click="btnLogin_Click" TabIndex="3" Margin="5">Login</Button>
+                <Button x:Name="btnExit" Width="70" Grid.Column="1" Click="btnExitClick"
+                        HorizontalAlignment="Left" Margin="5">Exit</Button>
+            </Grid>
+            
         </StackPanel>
     </Grid>
 </Window>

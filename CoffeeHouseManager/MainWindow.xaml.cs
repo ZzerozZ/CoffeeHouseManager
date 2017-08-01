@@ -21,11 +21,15 @@ namespace CoffeeHouseManager
     /// </summary>
     public partial class MainWindow : Window
     {
+        public static bool isAd = false;
+
         public MainWindow()
         {
             InitializeComponent();
+            this.DataContext = this;
+            if (isAd)
+                AdminMenuItem.IsEnabled = true;
         }
-
 
         private void txbCountFoodAdding_KeyDown(object sender, KeyEventArgs e)
         {
@@ -41,7 +45,13 @@ namespace CoffeeHouseManager
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            Application.Current.Shutdown();
+            if (MessageBox.Show("Do you want to login with other account?", "Exit", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+            {
+                LoginWindow login = new LoginWindow();
+                login.Show();
+            }
+            else
+                Application.Current.Shutdown();
         }
 
         private void AppCreator_Click(object sender, RoutedEventArgs e)
@@ -51,8 +61,17 @@ namespace CoffeeHouseManager
 
         private void AdminMode_Click(object sender, RoutedEventArgs e)
         {
-            AdminWindow admin = new AdminWindow();
-            admin.ShowDialog();
+            if(isAd)
+            {
+                AdminWindow admin = new AdminWindow();
+                admin.ShowDialog();
+            }
+        }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            isAd = false;
         }
     }
 }

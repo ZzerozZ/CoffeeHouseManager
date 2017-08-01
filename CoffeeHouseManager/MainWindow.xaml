@@ -8,20 +8,22 @@
         Title="Coffee house management" Height="600" Width="1050"
         Closing="MainWindow_Closing">
     <Grid>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-
+        
         <Menu>
             <MenuItem Header="_Data">
                 <MenuItem Header="T_oday info"></MenuItem>
                 <MenuItem Header="_Revenue comparison"></MenuItem>
-                <MenuItem Header="Admin mode" Click="AdminMode_Click"></MenuItem>
+                <MenuItem x:Name="AdminMenuItem" Header="Admin mode" IsEnabled="False" Click="AdminMode_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="_Account">
                 <MenuItem Header="_Change Password" Click="ChangePass_Click"></MenuItem>
                 <MenuItem Header="Account _info"></MenuItem>
+                <MenuItem Header="Log out" Click="LogOut_Click"></MenuItem>
             </MenuItem>
             <MenuItem Header="Abou_t">
                 <MenuItem Header="_This restaurant"></MenuItem>

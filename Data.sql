@@ -103,4 +103,72 @@ VALUES  ( 'nghia3' , -- UserName - varchar(20)
 GO
       
 	  
-Select UserName, DisplayName, IsManager from dbo.ACCOUNT  
+CREATE PROC USP_GetUserByUserName
+@UserName VARCHAR(20)
+AS
+BEGIN
+	SELECT * FROM dbo.ACCOUNT WHERE dbo.ACCOUNT.UserName = @UserName
+END
+GO
+
+
+EXEC dbo.USP_GetUserByUserName @UserName = 'nghia1' -- varchar(20)
+
+INSERT dbo.CTABLE
+        ( TableID, IsAvailable )
+VALUES  ( '101', -- TableID - varchar(3)
+          0)
+INSERT dbo.CTABLE
+        ( TableID, IsAvailable )
+VALUES  ( '102', -- TableID - varchar(3)
+          0)
+INSERT dbo.CTABLE
+        ( TableID, IsAvailable )
+VALUES  ( '201', -- TableID - varchar(3)
+          1  -- IsAvailable - bit
+          )
+
+
+
+INSERT dbo.FOODCATEGORY
+        ( FoodCategoryID, Name )
+VALUES  ( 'HAS', -- FoodCategoryID - varchar(10)
+          N'Hải sản'  -- Name - nvarchar(50)
+          )
+
+INSERT dbo.FOODCATEGORY
+        ( FoodCategoryID, Name )
+VALUES  ( 'DUO', -- FoodCategoryID - varchar(10)
+          N'Đồ uống'  -- Name - nvarchar(50)
+          )
+
+INSERT dbo.FOODCATEGORY
+        ( FoodCategoryID, Name )
+VALUES  ( 'THI', -- FoodCategoryID - varchar(10)
+          N'Thịt'  -- Name - nvarchar(50)
+          )
+
+
+
+INSERT dbo.FOOD
+        ( FoodID, Name, Price, IDFoodCategory )
+VALUES  ( 'HEL', -- FoodID - char(5)
+          N'Heo luộc', -- Name - nvarchar(25)
+          20000, -- Price - int
+          'THI'  -- IDFoodCategory - varchar(10)
+          )
+
+INSERT dbo.FOOD
+        ( FoodID, Name, Price, IDFoodCategory )
+VALUES  ( 'HHA', -- FoodID - char(5)
+          N'Hàu hấp', -- Name - nvarchar(25)
+          100000, -- Price - int
+          'HAS'  -- IDFoodCategory - varchar(10)
+          )
+INSERT dbo.FOOD
+        ( FoodID, Name, Price, IDFoodCategory )
+VALUES  ( 'Coca', -- FoodID - char(5)
+          N'Coca Cola', -- Name - nvarchar(25)
+          10000, -- Price - int
+          'DUO'  -- IDFoodCategory - varchar(10)
+          )
