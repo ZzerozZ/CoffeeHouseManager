@@ -20,7 +20,7 @@ namespace CoffeeHouseManager.DAO
             private set => instance = value;
         }
 
-        public DataTable ExecuteTable(string query, object[] parameter = null)
+        public DataTable ExecuteQuery(string query, object[] parameter = null)
         {
             DataTable data = new DataTable();
 
@@ -29,17 +29,17 @@ namespace CoffeeHouseManager.DAO
                 connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
 
-               if(parameter != null)
+                if (parameter != null)
                 {
                     string[] listParameter = query.Split(' ');
                     int i = 0;
-                    foreach(string item in listParameter)
+                    foreach (string item in listParameter)
                     {
-                        if(item.Contains('@'))
+                        if (item.Contains('@'))
                         {
                             command.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
                         }
+                        i++;
                     }
                 }
 
@@ -49,8 +49,6 @@ namespace CoffeeHouseManager.DAO
 
                 connection.Close();
             }
-
-               
 
             return data;
         }

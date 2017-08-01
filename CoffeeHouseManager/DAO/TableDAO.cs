@@ -27,7 +27,7 @@ namespace CoffeeHouseManager.DAO
         {
             List<TableDTO> list = new List<TableDTO>();
 
-            DataTable data = DataProvider.Instance.ExecuteTable("select * from dbo.CTABLE");
+            DataTable data = DataProvider.Instance.ExecuteQuery("select * from dbo.CTABLE");
             
             foreach(DataRow row in data.Rows)
             {
