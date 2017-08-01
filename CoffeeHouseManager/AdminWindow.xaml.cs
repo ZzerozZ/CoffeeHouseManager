@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoffeeHouseManager.DAO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -29,18 +30,10 @@ namespace CoffeeHouseManager
 
         public void GetAccountList()
         {
-            string conectionString = "Data Source=NGHIA-ACER;Initial Catalog=CoffeeHouse;Integrated Security=True";
-            SqlConnection connection = new SqlConnection(conectionString);
-            connection.Open();
-            string query = "Select * from dbo.ACCOUNT";
-            SqlCommand command = new SqlCommand(query, connection);
-            SqlDataAdapter adap = new SqlDataAdapter(command);
-            DataTable data = new DataTable();
+            string query = "EXEC dbo.USP_GetUserByUserName @UserName";
 
-            adap.Fill(data);
-
-            connection.Close();
-            
+            DataProvider provider = new DataProvider();
+            lsvAccount.ItemsSource = provider.ExecuteTable(query, new object[] { "nghia3"}).DefaultView;
         }
     }
 }

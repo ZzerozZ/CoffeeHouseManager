@@ -293,14 +293,14 @@
                                     <ColumnDefinition Width="0.3*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
-                                <TextBlock x:Name="txblIndex"></TextBlock>
-                                <TextBlock x:Name="txblUsername" Grid.Column="1"></TextBlock>
-                                <TextBlock x:Name="txblDisplayName" Grid.Column="2"></TextBlock>
-                                <Button x:Name="btnDeleteAccount" Grid.Column="3"></Button>
+                                <TextBlock x:Name="txblIndex">1</TextBlock>
+                                <TextBlock x:Name="txblUsername" Grid.Column="1" Text="{Binding UserName}" Margin="10"></TextBlock>
+                                <TextBlock x:Name="txblDisplayName" Grid.Column="2" Text="{Binding DisplayName}" Margin="10"></TextBlock>
+                                <Button x:Name="btnDeleteAccount" Grid.Column="3" Content="{Binding IsManager}" Margin="10"></Button>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                </ListView>
+                        </ListView>
             </TabItem>
         </TabControl>
     </Grid>
