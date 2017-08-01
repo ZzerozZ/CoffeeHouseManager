@@ -34,6 +34,10 @@ namespace CoffeeHouseManager
                 this.Hide();
                 ManagerWindow.Show();
             }
+            else
+            {
+                txblLoginStatus.Text = "Incorrect Username or Pasword!";
+            }
         }
 
         private void btnExitClick(object sender, RoutedEventArgs e)

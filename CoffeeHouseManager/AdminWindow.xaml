@@ -187,7 +187,8 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Margin="15">From</TextBlock>
-                            <DatePicker x:Name="dpkFrom" Grid.Column="1"  Margin="15 10" BorderThickness="0 0 0 1"></DatePicker>
+                            <DatePicker x:Name="dpkFrom" Grid.Column="1"  Margin="15 10" 
+                                        BorderThickness="0 0 0 1"></DatePicker>
 
                         </Grid>
 

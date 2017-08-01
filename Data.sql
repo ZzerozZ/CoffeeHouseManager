@@ -127,6 +127,20 @@ INSERT dbo.CTABLE
 VALUES  ( '201', -- TableID - varchar(3)
           1  -- IsAvailable - bit
           )
+INSERT dbo.CTABLE
+        ( TableID, IsAvailable )
+VALUES  ( '103', -- TableID - varchar(3)
+          1)
+INSERT dbo.CTABLE
+        ( TableID, IsAvailable )
+VALUES  ( '301', -- TableID - varchar(3)
+          0)
+INSERT dbo.CTABLE
+        ( TableID, IsAvailable )
+VALUES  ( '202', -- TableID - varchar(3)
+          1  -- IsAvailable - bit
+          )
+
 
 
 
@@ -172,3 +186,10 @@ VALUES  ( 'Coca', -- FoodID - char(5)
           10000, -- Price - int
           'DUO'  -- IDFoodCategory - varchar(10)
           )
+
+
+SELECT IsManager FROM dbo.ACCOUNT WHERE UserName = 'nghia2'
+
+SELECT * FROM dbo.CTABLE
+
+

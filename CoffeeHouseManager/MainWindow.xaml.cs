@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CoffeeHouseManager.DAO;
+using CoffeeHouseManager.DTO;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -7,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -26,9 +29,41 @@ namespace CoffeeHouseManager
         public MainWindow()
         {
             InitializeComponent();
-            this.DataContext = this;
             if (isAd)
                 AdminMenuItem.IsEnabled = true;
+
+            LoadTable();
+        }
+
+        private void LoadTable()
+        {
+            List<TableDTO> tablelist = TableDAO.Instance.LoadTableList();
+            foreach(TableDTO table in tablelist)
+            {
+                ToggleButton btnTable = new ToggleButton();
+                btnTable.Width = btnTable.Height = 150;
+                btnTable.Background = Brushes.White;
+                btnTable.Content = "Table " + table.Id + ((!table.Status)? "\n\n  Readly" : "\n\n  Using");
+                btnTable.BorderThickness = new Thickness(0, 0, 0, 0);
+                btnTable.IsChecked = table.Status;
+                btnTable.Click += BtnTable_Click;
+
+                wpnMain.Children.Add(btnTable);
+            }
+        }
+
+        private void BtnTable_Click(object sender, RoutedEventArgs e)
+        {
+            if((sender as ToggleButton).IsChecked == false)
+            {
+                
+                (sender as ToggleButton).Content = (sender as ToggleButton).Content.ToString().Replace("Using", "Readly");
+            }
+            else
+            {
+                
+                (sender as ToggleButton).Content = (sender as ToggleButton).Content.ToString().Replace("Readly", "Using");
+            }
         }
 
         private void txbCountFoodAdding_KeyDown(object sender, KeyEventArgs e)

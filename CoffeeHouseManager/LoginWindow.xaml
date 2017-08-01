@@ -27,11 +27,13 @@
                 <TextBlock Text="Password" FontSize="14"></TextBlock>
                 <PasswordBox x:Name="pwbPassword" FontSize="14" Grid.Column="1" Width="200" Margin="10 0 0 10" TabIndex="2"></PasswordBox>
             </Grid>
-
-            <Grid>
+            
+            <TextBlock x:Name="txblLoginStatus" Text="" Foreground="Red" Margin="75 0 0 0"></TextBlock>
+            <Grid Margin="50 0 0 0">
+                
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition></ColumnDefinition>
-                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition ></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Button x:Name="btnLogin" Width="70" FontSize="14" HorizontalAlignment="Right" 
@@ -39,6 +41,7 @@
                 <Button x:Name="btnExit" Width="70" Grid.Column="1" Click="btnExitClick"
                         HorizontalAlignment="Left" Margin="5">Exit</Button>
             </Grid>
+
             
         </StackPanel>
     </Grid>
