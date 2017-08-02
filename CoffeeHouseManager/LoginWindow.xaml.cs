@@ -30,14 +30,18 @@ namespace CoffeeHouseManager
         {
             if(Account.Instance.Login(txbUserName.Text, pwbPassword.Password))
             {
-                MainWindow ManagerWindow = new MainWindow();
-                this.Hide();
-                ManagerWindow.Show();
+                //MainWindow ManagerWindow = new MainWindow();
+                //this.Hide();
+                //ManagerWindow.Show();
             }
             else
             {
-                txblLoginStatus.Text = "Incorrect Username or Pasword!";
+               // txblLoginStatus.Text = "Incorrect Username or Pasword!";
             }
+
+            MainWindow ManagerWindow = new MainWindow();
+            this.Hide();
+            ManagerWindow.Show();
         }
 
         private void btnExitClick(object sender, RoutedEventArgs e)

@@ -16,6 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace CoffeeHouseManager
 {
@@ -26,45 +27,71 @@ namespace CoffeeHouseManager
     {
         public static bool isAd = false;
 
+        public ToggleButton lastButton = new ToggleButton();
+
         public MainWindow()
         {
             InitializeComponent();
             if (isAd)
                 AdminMenuItem.IsEnabled = true;
 
+            this.DataContext = this;
             LoadTable();
         }
 
         private void LoadTable()
         {
+            bool SetLastButton = false;
             List<TableDTO> tablelist = TableDAO.Instance.LoadTableList();
             foreach(TableDTO table in tablelist)
             {
                 ToggleButton btnTable = new ToggleButton();
-                btnTable.Width = btnTable.Height = 150;
-                btnTable.Background = Brushes.White;
-                btnTable.Content = "Table " + table.Id + ((!table.Status)? "\n\n  Readly" : "\n\n  Using");
-                btnTable.BorderThickness = new Thickness(0, 0, 0, 0);
-                btnTable.IsChecked = table.Status;
+
+                btnTable.Width = btnTable.Height = 130;
+
+                btnTable.Background = (!table.Status)? Brushes.White : Brushes.YellowGreen;
+                btnTable.Tag = (table.Status == true)? "Using" : "Readly";
+                btnTable.Content = "Table " + table.Id + "\n\n  " + btnTable.Tag.ToString();
+                btnTable.BorderThickness = new Thickness(0.5);
+                btnTable.IsChecked = false;
                 btnTable.Click += BtnTable_Click;
 
                 wpnMain.Children.Add(btnTable);
+                if(SetLastButton == false)
+                {
+                    lastButton = btnTable;
+                    SetLastButton = !SetLastButton;
+                }
             }
+
         }
 
         private void BtnTable_Click(object sender, RoutedEventArgs e)
         {
-            if((sender as ToggleButton).IsChecked == false)
+            if ((string)(sender as ToggleButton).Tag == "Using")
             {
-                
-                (sender as ToggleButton).Content = (sender as ToggleButton).Content.ToString().Replace("Using", "Readly");
+                btnAddFood.Content = "Add food";
+                btnDiscount.IsEnabled = true;
             }
             else
             {
-                
-                (sender as ToggleButton).Content = (sender as ToggleButton).Content.ToString().Replace("Readly", "Using");
+                btnAddFood.Content = "Open";
+                btnDiscount.IsEnabled = false;
             }
+               
+
+            if ((sender as ToggleButton).IsChecked == false)
+            {
+                (sender as ToggleButton).IsChecked = true;
+            }
+            if (btnAddFood.IsEnabled == false && btnMergeTable.IsEnabled == false)
+                btnAddFood.IsEnabled = btnMergeTable.IsEnabled = true;
+            
+            lastButton.IsChecked = false;
+            lastButton = (sender as ToggleButton);
         }
+
+
 
         private void txbCountFoodAdding_KeyDown(object sender, KeyEventArgs e)
         {
@@ -107,6 +134,24 @@ namespace CoffeeHouseManager
         {
             this.Close();
             isAd = false;
+        }
+
+        private bool MainWindowOpened = false;
+        private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            if(MainWindowOpened == false)
+            {
+                MainWindowOpened = true;
+            }
+            else
+            {
+                for (int i = 0; i < wpnMain.Children.Count; i++)
+                {
+                    (wpnMain.Children[i] as ToggleButton).Height = (wpnMain.Children[i] as ToggleButton).Width = (int)(15 * this.Width / 100);
+                }
+            }
+            
+            //BindingOperations.GetBindingExpression(ButtonSize, TextBox.TextProperty).UpdateSource();
         }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:CoffeeHouseManager"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="Coffee house management" Height="600" Width="1050"
-        Closing="MainWindow_Closing">
+        Closing="MainWindow_Closing" SizeChanged="Window_SizeChanged">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -35,26 +35,37 @@
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
-                <ColumnDefinition Width="521"></ColumnDefinition>
+                <ColumnDefinition Width="400"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
+            <ScrollViewer>
+                <Grid>
+                    <WrapPanel x:Name="wpnMain" HorizontalAlignment="Center" VerticalAlignment="Center"></WrapPanel>
+                </Grid>
+                
+            </ScrollViewer>
+            
 
-            <Border BorderThickness="0 0 0 0" BorderBrush="Red" Grid.Column="2">
+            <Border x:Name="brdMain" BorderThickness="0 0 0 0" BorderBrush="Red" Grid.Column="2">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition></RowDefinition>
                         <RowDefinition Height="80"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <Grid>
+                        <Label Content="TABLE INFORMATION" HorizontalAlignment="Center" VerticalAlignment="Center"
+                               FontSize="20" FontWeight="Bold" Foreground="DarkBlue"></Label>
+                    </Grid>
+                    <!--<Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition Width="80"></ColumnDefinition>
                             <ColumnDefinition Width="50"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Grid>
+                        --><!--<Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
@@ -63,12 +74,12 @@
                             <ComboBox x:Name="cmbCategory" Margin="5 7 5 3">Choose a category</ComboBox>
                             <ComboBox x:Name="cmbFood" Margin="5 4 5 7" Grid.Row="1">Choose a food</ComboBox>
 
-                        </Grid>
+                        </Grid>-->
 
-                        <Button x:Name="btnAddFood" Margin="10 15" Grid.Column="1">Add</Button>
+                        <!--<Button x:Name="btnAddFood" Margin="10 15" Grid.Column="1">Add</Button>-->
 
-                        <TextBox x:Name="txbCountFoodAdding" FontSize="20" TextAlignment="Center" Grid.Column="2" Margin="0 20" BorderThickness="0 0 0 1" BorderBrush="Red" Text="1" KeyDown="txbCountFoodAdding_KeyDown" ></TextBox>
-                    </Grid>
+                        <!--<TextBox x:Name="txbCountFoodAdding" FontSize="20" TextAlignment="Center" Grid.Column="2" Margin="0 20" BorderThickness="0 0 0 1" BorderBrush="Red" Text="1" KeyDown="txbCountFoodAdding_KeyDown" ></TextBox>--><!--
+                    </Grid>-->
 
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
@@ -77,13 +88,14 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button x:Name="btnDiscount" Margin="15" Grid.Column="2">Discount</Button>
+                        <Button x:Name="btnAddFood" Margin="15" Grid.Column="0" IsEnabled="False">Open</Button>
+                        <Button x:Name="btnMergeTable" Margin="15" Grid.Column="1" IsEnabled="False">Merge tables</Button>
+                        <Button x:Name="btnDiscount" Margin="15" Grid.Column="2" IsEnabled="False">Discount</Button>
                     </Grid>
                 </Grid>
 
             </Border>
 
-            <WrapPanel x:Name="wpnMain"></WrapPanel>
         
         </Grid>
 
