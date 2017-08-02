@@ -193,3 +193,25 @@ SELECT IsManager FROM dbo.ACCOUNT WHERE UserName = 'nghia2'
 SELECT * FROM dbo.CTABLE
 
 
+DECLARE @i INT = 302
+
+WHILE @i < 310
+BEGIN
+	INSERT dbo.CTABLE
+	        ( TableID, IsAvailable )
+	VALUES  ( CAST(@i AS VARCHAR(3)), -- TableID - varchar(3)
+	          0  -- IsAvailable - bit
+	          )
+
+	SET @i = @i + 1
+END 
+
+INSERT dbo.FOOD
+        ( FoodID, Name, Price, IDFoodCategory )
+VALUES  ( '', -- FoodID - char(5)
+          N'', -- Name - nvarchar(25)
+          0, -- Price - int
+          ''  -- IDFoodCategory - varchar(10)
+          )
+
+SELECT FoodID, Name, Price FROM dbo.FOOD WHERE IDFoodCategory = 

@@ -86,6 +86,7 @@
     <Compile Include="DAO\Account.cs" />
     <Compile Include="DAO\DataProvider.cs" />
     <Compile Include="DAO\TableDAO.cs" />
+    <Compile Include="DTO\Bill.cs" />
     <Compile Include="DTO\TableDTO.cs" />
     <Compile Include="LoginWindow.xaml.cs">
       <DependentUpon>LoginWindow.xaml</DependentUpon>

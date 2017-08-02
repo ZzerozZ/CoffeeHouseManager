@@ -58,29 +58,54 @@
                         <Label Content="TABLE INFORMATION" HorizontalAlignment="Center" VerticalAlignment="Center"
                                FontSize="20" FontWeight="Bold" Foreground="DarkBlue"></Label>
                     </Grid>
-                    <!--<Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition></ColumnDefinition>
-                            <ColumnDefinition Width="80"></ColumnDefinition>
-                            <ColumnDefinition Width="50"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
 
-                        --><!--<Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition></RowDefinition>
-                                <RowDefinition></RowDefinition>
-                            </Grid.RowDefinitions>
+                    <Grid Grid.Row="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Background="Aqua">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45"></ColumnDefinition>
+                                <ColumnDefinition Width="165"></ColumnDefinition>
+                                <ColumnDefinition Width="100"></ColumnDefinition>
+                                <ColumnDefinition Width="90"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
 
-                            <ComboBox x:Name="cmbCategory" Margin="5 7 5 3">Choose a category</ComboBox>
-                            <ComboBox x:Name="cmbFood" Margin="5 4 5 7" Grid.Row="1">Choose a food</ComboBox>
-
-                        </Grid>-->
-
-                        <!--<Button x:Name="btnAddFood" Margin="10 15" Grid.Column="1">Add</Button>-->
-
-                        <!--<TextBox x:Name="txbCountFoodAdding" FontSize="20" TextAlignment="Center" Grid.Column="2" Margin="0 20" BorderThickness="0 0 0 1" BorderBrush="Red" Text="1" KeyDown="txbCountFoodAdding_KeyDown" ></TextBox>--><!--
-                    </Grid>-->
-
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" FontWeight="SemiBold">Bill ID</TextBlock>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" FontWeight="SemiBold">Food name</TextBlock>
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" FontWeight="SemiBold">Price</TextBlock>
+                            <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" FontWeight="SemiBold">Discount</TextBlock>
+                        </Grid>
+                        <ListView x:Name="lsvOrderList" Grid.Row="1">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="45"></ColumnDefinition>
+                                            <ColumnDefinition Width="165"></ColumnDefinition>
+                                            <ColumnDefinition Width="100"></ColumnDefinition>
+                                            <ColumnDefinition Width="90"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Border BorderBrush="LawnGreen" BorderThickness="0 0 1 1">
+                                            <TextBlock x:Name="txblIndex" Text="{Binding ID}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
+                                        </Border>
+                                        <Border BorderBrush="LawnGreen" BorderThickness="0 0 1 1" Grid.Column="1">
+                                            <TextBlock x:Name="txblFoodNam" Text="{Binding FoodName}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
+                                        </Border>
+                                        <Border BorderBrush="LawnGreen" BorderThickness="0 0 1 1" Grid.Column="2">
+                                            <TextBlock x:Name="txblPrice" Text="{Binding FoodPrice}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
+                                        </Border>
+                                        <Border BorderBrush="LawnGreen" BorderThickness="0 0 1 1" Grid.Column="3">
+                                            <Button x:Name="btnDiscounted" Content="Discount" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+                                        </Border>
+                                    </Grid>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                 
+                        
                     <Grid Grid.Row="2">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>

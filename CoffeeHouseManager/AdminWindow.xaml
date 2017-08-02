@@ -301,7 +301,7 @@
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
-                        </ListView>
+                </ListView>
             </TabItem>
         </TabControl>
     </Grid>

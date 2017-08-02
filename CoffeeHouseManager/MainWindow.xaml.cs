@@ -49,13 +49,14 @@ namespace CoffeeHouseManager
 
                 btnTable.Width = btnTable.Height = 130;
 
+                //btnAddFood.
                 btnTable.Background = (!table.Status)? Brushes.White : Brushes.YellowGreen;
                 btnTable.Tag = (table.Status == true)? "Using" : "Readly";
                 btnTable.Content = "Table " + table.Id + "\n\n  " + btnTable.Tag.ToString();
                 btnTable.BorderThickness = new Thickness(0.5);
                 btnTable.IsChecked = false;
                 btnTable.Click += BtnTable_Click;
-
+                
                 wpnMain.Children.Add(btnTable);
                 if(SetLastButton == false)
                 {
@@ -89,6 +90,9 @@ namespace CoffeeHouseManager
             
             lastButton.IsChecked = false;
             lastButton = (sender as ToggleButton);
+
+            //Display bill:
+            lsvOrderList.ItemsSource = Bill.Instance.GetBills((sender as ToggleButton).Content.ToString().Replace("Table ","").Remove(3));
         }
 
 
