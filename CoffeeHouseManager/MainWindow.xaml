@@ -88,7 +88,7 @@
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
-                        <Button x:Name="btnAddFood" Margin="15" Grid.Column="0" IsEnabled="False">Open</Button>
+                        <Button x:Name="btnAddFood" Margin="15" Grid.Column="0" IsEnabled="False" Click="btnAddFood_Click">Open</Button>
                         <Button x:Name="btnMergeTable" Margin="15" Grid.Column="1" IsEnabled="False">Merge tables</Button>
                         <Button x:Name="btnDiscount" Margin="15" Grid.Column="2" IsEnabled="False">Discount</Button>
                     </Grid>

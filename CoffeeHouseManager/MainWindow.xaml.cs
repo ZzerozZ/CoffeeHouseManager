@@ -153,5 +153,18 @@ namespace CoffeeHouseManager
             
             //BindingOperations.GetBindingExpression(ButtonSize, TextBox.TextProperty).UpdateSource();
         }
+
+        private void btnAddFood_Click(object sender, RoutedEventArgs e)
+        {
+            if(btnAddFood.Content.ToString() == "Open")
+            {
+
+            }
+            else
+            {
+                AddFood add = new AddFood();
+                add.ShowDialog();
+            }
+        }
     }
 }

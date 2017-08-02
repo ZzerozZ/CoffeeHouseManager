@@ -4,11 +4,47 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeHouseManager"
-        mc:Ignorable="d"
-        Title="AddFood" Height="300" Width="300">
+        mc:Ignorable="d" WindowStartupLocation="CenterScreen"
+        Title="Add Food" Height="650" Width="525">
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="80"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Button x:Name="btnAdd" Margin="5 20">Add</Button>
+            </Grid>
             
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <ComboBox x:Name="cmbCategory" Height="25" Margin="5" Width="200" SelectionChanged="cmbCategory_SelectionChanged"></ComboBox>
+                    <ComboBox x:Name="cmbFood" Height="25" Text="Food name" Grid.Column="1" Width="200" Margin="5"></ComboBox>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBox x:Name="txbSearch" Margin="10 5 20 5" BorderThickness="0 0 0 1" FontSize="17"></TextBox>
+
+                </Grid>
+            </Grid>
+           
         </Grid>
     </Grid>
 </Window>
