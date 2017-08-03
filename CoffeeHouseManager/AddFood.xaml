@@ -15,11 +15,13 @@
 
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="80"></RowDefinition>
-                    <RowDefinition></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition Height="40"></RowDefinition>
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
-                <Button x:Name="btnAdd" Margin="5 20">Add</Button>
+
+                <TextBox x:Name="txbCount" Margin="10 5" BorderThickness="0 0 0 1" FontSize="18" TextAlignment="Center">1</TextBox>
+                <Button x:Name="btnAdd" Margin="5" Grid.Row="1">Add</Button>
             </Grid>
             
             <Grid>
@@ -37,7 +39,7 @@
                     </Grid.ColumnDefinitions>
 
                     <ComboBox x:Name="cmbCategory" Height="25" Margin="5" Width="200" SelectionChanged="cmbCategory_SelectionChanged"></ComboBox>
-                    <ComboBox x:Name="cmbFood" Height="25" Text="Food name" Grid.Column="1" Width="200" Margin="5"></ComboBox>
+                    <ComboBox x:Name="cmbFood" Height="25" Text="Food name" Grid.Column="1" Width="200" Margin="5" SelectionChanged="cmbFood_SelectionChanged"></ComboBox>
                 </Grid>
                 <Grid Grid.Row="1">
                     <TextBox x:Name="txbSearch" Margin="10 5 20 5" BorderThickness="0 0 0 1" FontSize="17"></TextBox>

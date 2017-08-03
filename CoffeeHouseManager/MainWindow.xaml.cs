@@ -4,8 +4,10 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,7 +53,7 @@ namespace CoffeeHouseManager
 
                 //btnAddFood.
                 btnTable.Background = (!table.Status)? Brushes.White : Brushes.YellowGreen;
-                btnTable.Tag = (table.Status == true)? "Using" : "Readly";
+                btnTable.Tag = (table.Status == true)? "Using" : "Availble";
                 btnTable.Content = "Table " + table.Id + "\n\n  " + btnTable.Tag.ToString();
                 btnTable.BorderThickness = new Thickness(0.5);
                 btnTable.IsChecked = false;
@@ -93,9 +95,23 @@ namespace CoffeeHouseManager
 
             //Display bill:
             lsvOrderList.ItemsSource = Bill.Instance.GetBills((sender as ToggleButton).Content.ToString().Replace("Table ","").Remove(3));
+
+            CultureInfo culture = new CultureInfo("vi");
+            Thread.CurrentThread.CurrentCulture = culture;
+            txblTotalBill.Text = GetTotalBill().ToString("c");
         }
 
+        private int GetTotalBill()
+        {
+            int total = 0;
 
+            foreach(var item in lsvOrderList.Items)
+            {
+                total += (item as Bill).FoodPrice;
+            }
+
+            return total;
+        }
 
         private void txbCountFoodAdding_KeyDown(object sender, KeyEventArgs e)
         {
@@ -154,8 +170,6 @@ namespace CoffeeHouseManager
                     (wpnMain.Children[i] as ToggleButton).Height = (wpnMain.Children[i] as ToggleButton).Width = (int)(15 * this.Width / 100);
                 }
             }
-            
-            //BindingOperations.GetBindingExpression(ButtonSize, TextBox.TextProperty).UpdateSource();
         }
 
         private void btnAddFood_Click(object sender, RoutedEventArgs e)

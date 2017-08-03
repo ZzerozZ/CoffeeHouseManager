@@ -51,7 +51,8 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40"></RowDefinition>
                         <RowDefinition></RowDefinition>
-                        <RowDefinition Height="80"></RowDefinition>
+                        <RowDefinition Height="30"></RowDefinition>
+                        <RowDefinition Height="70"></RowDefinition>
                     </Grid.RowDefinitions>
 
                     <Grid>
@@ -67,25 +68,29 @@
                         <Grid Background="Aqua">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="45"></ColumnDefinition>
-                                <ColumnDefinition Width="165"></ColumnDefinition>
-                                <ColumnDefinition Width="100"></ColumnDefinition>
-                                <ColumnDefinition Width="90"></ColumnDefinition>
+                                <ColumnDefinition Width="160"></ColumnDefinition>
+                                <ColumnDefinition Width="85"></ColumnDefinition>
+                                <ColumnDefinition Width="45"></ColumnDefinition>
+                                <ColumnDefinition Width="65"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
-                            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" FontWeight="SemiBold">Bill ID</TextBlock>
-                            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" FontWeight="SemiBold">Food name</TextBlock>
-                            <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" FontWeight="SemiBold">Price</TextBlock>
-                            <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="16" FontWeight="SemiBold">Discount</TextBlock>
+                            <TextBlock Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="13" FontWeight="SemiBold">ID</TextBlock>
+                            <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="13" FontWeight="SemiBold">Food name</TextBlock>
+                            <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="13" FontWeight="SemiBold">Price</TextBlock>
+                            <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="13" FontWeight="SemiBold">Items</TextBlock>
+                            <TextBlock Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="13" FontWeight="SemiBold">Discount</TextBlock>
                         </Grid>
+                        
                         <ListView x:Name="lsvOrderList" Grid.Row="1">
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
                                             <ColumnDefinition Width="45"></ColumnDefinition>
-                                            <ColumnDefinition Width="165"></ColumnDefinition>
-                                            <ColumnDefinition Width="100"></ColumnDefinition>
-                                            <ColumnDefinition Width="90"></ColumnDefinition>
+                                            <ColumnDefinition Width="160"></ColumnDefinition>
+                                            <ColumnDefinition Width="85"></ColumnDefinition>
+                                            <ColumnDefinition Width="45"></ColumnDefinition>
+                                            <ColumnDefinition Width="65"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
                                         <Border BorderBrush="LawnGreen" BorderThickness="0 0 1 1">
                                             <TextBlock x:Name="txblIndex" Text="{Binding ID}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
@@ -97,16 +102,29 @@
                                             <TextBlock x:Name="txblPrice" Text="{Binding FoodPrice}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
                                         </Border>
                                         <Border BorderBrush="LawnGreen" BorderThickness="0 0 1 1" Grid.Column="3">
-                                            <Button x:Name="btnDiscounted" Content="Discount" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+                                            <TextBlock x:Name="txblCount" Text="{Binding Count}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
+                                        </Border>
+                                        <Border BorderBrush="LawnGreen" BorderThickness="0 0 1 1" Grid.Column="4">
+                                            <Button x:Name="btnDiscounted" Content="Discount" FontSize="10" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
                                         </Border>
                                     </Grid>
                                 </DataTemplate>
                             </ListView.ItemTemplate>
                         </ListView>
                     </Grid>
-                 
-                        
+
                     <Grid Grid.Row="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="150"></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Foreground="Black" FontWeight="SemiBold" TextAlignment="Center" FontSize="18">Total</TextBlock>
+                        <TextBlock x:Name="txblTotalBill" Foreground="Green" FontWeight="SemiBold" TextAlignment="Right" FontSize="18"
+                                   Grid.Column="1" HorizontalAlignment="Right" Margin="50 0"></TextBlock>
+                    </Grid>
+                        
+                    <Grid Grid.Row="3">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>

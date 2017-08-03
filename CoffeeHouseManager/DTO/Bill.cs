@@ -18,6 +18,7 @@ namespace CoffeeHouseManager.DTO
         private string foodID;
         private string foodName;
         private int foodPrice;
+        private int count;
 
         public static Bill Instance
         {
@@ -35,6 +36,7 @@ namespace CoffeeHouseManager.DTO
         public string FoodID { get => foodID; set => foodID = value; }
         public string FoodName { get => foodName; set => foodName = value; }
         public int FoodPrice { get => foodPrice; set => foodPrice = value; }
+        public int Count { get => count; set => count = value; }
 
         public List<Bill> GetBills(string _TableID)
         {
@@ -48,7 +50,10 @@ namespace CoffeeHouseManager.DTO
                 newBill.ID = int.Parse(row[0].ToString());
                 newBill.TableID = _TableID;
                 newBill.IsPaid = (row[2].ToString() == "1");
-                newBill.FoodID = DataProvider.Instance.ExecuteScalar("Select FoodID from dbo.BILLINFO where BillID = '" + newBill.ID +"'").ToString();
+                
+                DataTable data = DataProvider.Instance.ExecuteQuery("Select FoodID, FoodCount from dbo.BILLINFO where BillID = '" + newBill.ID + "'");
+                newBill.FoodID = data.Rows[0]["FoodID"].ToString();
+                newBill.Count = int.Parse(data.Rows[0]["FoodCount"].ToString());
                 GetFoodInfo(ref newBill);
                 list.Add(newBill);
             }
@@ -58,8 +63,9 @@ namespace CoffeeHouseManager.DTO
 
         private void GetFoodInfo(ref Bill bill)
         {
-            bill.FoodName = DataProvider.Instance.ExecuteScalar("Select Name from dbo.FOOD where FoodID = '" + bill.FoodID + "'").ToString();
-            bill.FoodPrice = int.Parse(DataProvider.Instance.ExecuteScalar("Select Price from dbo.FOOD where FoodID = '" + bill.FoodID + "'").ToString());
+            DataTable data = DataProvider.Instance.ExecuteQuery("Select Name, Price from dbo.FOOD where FoodID = '" + bill.FoodID + "'");
+            bill.FoodName = data.Rows[0]["Name"].ToString();
+            bill.FoodPrice = int.Parse(data.Rows[0]["Price"].ToString());
         }
     }
 }

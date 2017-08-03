@@ -49,5 +49,10 @@ namespace CoffeeHouseManager
             cmbFood.ItemsSource = food;
             cmbFood.SelectedIndex = 0;
         }
+
+        private void cmbFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            txbSearch.Text = cmbFood.SelectedItem.ToString().Remove(0, cmbFood.SelectedItem.ToString().IndexOf('-') + 2);
+        }
     }
 }

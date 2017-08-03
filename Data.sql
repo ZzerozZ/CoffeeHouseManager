@@ -52,6 +52,8 @@ CREATE TABLE BILL
 )
 GO
 
+Select FoodID from dbo.BILLINFO where BillID = '
+
 CREATE TABLE BILLINFO
 (
 	ID INT IDENTITY PRIMARY KEY,
@@ -214,4 +216,83 @@ VALUES  ( '', -- FoodID - char(5)
           ''  -- IDFoodCategory - varchar(10)
           )
 
-SELECT FoodID, Name, Price FROM dbo.FOOD WHERE IDFoodCategory = 
+/*SELECT FoodID, Name, Price FROM dbo.FOOD WHERE IDFoodCategory = */
+
+INSERT dbo.FOOD
+        ( FoodID, Name, Price, IDFoodCategory )
+VALUES  ( 'THM', -- FoodID - char(5)
+          N'Tôm hùm nấu me', -- Name - nvarchar(25)
+          200000, -- Price - int
+          'HAS'  -- IDFoodCategory - varchar(10)
+          )
+INSERT dbo.FOOD
+        ( FoodID, Name, Price, IDFoodCategory )
+VALUES  ( 'HXT', -- FoodID - char(5)
+          N'Bò tái chanh', -- Name - nvarchar(25)
+          75000, -- Price - int
+          'THI'  -- IDFoodCategory - varchar(10)
+          )
+INSERT dbo.FOOD
+        ( FoodID, Name, Price, IDFoodCategory )
+VALUES  ( 'CKD', -- FoodID - char(5)
+          N'Chanh vắt không đường', -- Name - nvarchar(25)
+          0, -- Price - int
+          'DUO'  -- IDFoodCategory - varchar(10)
+          )
+
+SELECT * FROM dbo.FOOD
+
+INSERT dbo.BILL
+        ( DateCheckIn ,
+          DateCheckOut ,
+          TableID ,
+          IsPaid
+        )
+VALUES  ( GETDATE() , -- DateCheckIn - date
+          GETDATE() , -- DateCheckOut - date
+          '103' , -- TableID - varchar(3)
+          0  -- IsPaid - bit
+        )
+INSERT dbo.BILL
+        ( DateCheckIn ,
+          DateCheckOut ,
+          TableID ,
+          IsPaid
+        )
+VALUES  ( GETDATE() , -- DateCheckIn - date
+          GETDATE() , -- DateCheckOut - date
+          '201' , -- TableID - varchar(3)
+          0  -- IsPaid - bit
+        )
+INSERT dbo.BILL
+        ( DateCheckIn ,
+          DateCheckOut ,
+          TableID ,
+          IsPaid
+        )
+VALUES  ( GETDATE() , -- DateCheckIn - date
+          GETDATE() , -- DateCheckOut - date
+          '201' , -- TableID - varchar(3)
+          0  -- IsPaid - bit
+        )
+
+INSERT dbo.BILLINFO
+        ( BillID, FoodID, FoodCount )
+VALUES  ( 3, -- BillID - int
+          'Coca', -- FoodID - char(5)
+          1  -- FoodCount - int
+          )
+INSERT dbo.BILLINFO
+        ( BillID, FoodID, FoodCount )
+VALUES  ( 1, -- BillID - int
+          'HXT', -- FoodID - char(5)
+          1 -- FoodCount - int
+          )
+INSERT dbo.BILLINFO
+        ( BillID, FoodID, FoodCount )
+VALUES  ( 2, -- BillID - int
+          'HHA', -- FoodID - char(5)
+		  1 -- FoodCount - int
+          )
+
+SELECT * FROM dbo.BILLINFO
