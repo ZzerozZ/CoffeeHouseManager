@@ -1,4 +1,5 @@
 ﻿using CoffeeHouseManager.DAO;
+using CoffeeHouseManager.DTO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -52,7 +53,33 @@ namespace CoffeeHouseManager
 
         private void cmbFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            txbSearch.Text = cmbFood.SelectedItem.ToString().Remove(0, cmbFood.SelectedItem.ToString().IndexOf('-') + 2);
+            //txbSearch.Text = cmbFood.SelectedItem.ToString().Remove(0, cmbFood.SelectedItem.ToString().IndexOf('-') + 2);
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            string tableID = MainWindow.lastButton.Content.ToString().Replace("Table ", "").Remove(5);
+
+            //if (DataProvider.Instance.ExecuteNonQuery()
+            //{
+                BillDAO.Instance.InsertBill(tableID);
+                BillDAO.Instance.InsertBillInfo(cmbFood.SelectedItem.ToString().Remove(5), int.Parse(txbCount.Text));
+            //}
+            //else
+            //{
+
+            //}
+
+
+            MainWindow.BillSource = Bill.Instance.GetBills(tableID.Remove(3));
+            btnAddClicked(this, new EventArgs());
+        }
+
+        private static event EventHandler btnAddClicked;
+        public static event EventHandler BtnAddClicked
+        {
+            add { btnAddClicked += value; }
+            remove { btnAddClicked -= value; }
         }
     }
 }

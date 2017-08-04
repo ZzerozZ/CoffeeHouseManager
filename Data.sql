@@ -52,7 +52,7 @@ CREATE TABLE BILL
 )
 GO
 
-Select FoodID from dbo.BILLINFO where BillID = '
+Select FoodID from dbo.BILLINFO where BillID = 
 
 CREATE TABLE BILLINFO
 (
@@ -296,3 +296,29 @@ VALUES  ( 2, -- BillID - int
           )
 
 SELECT * FROM dbo.BILLINFO
+
+
+CREATE PROC USP_InsertBill
+@TableId int 
+AS
+BEGIN
+	INSERT dbo.BILL
+	        ( DateCheckIn ,
+	          DateCheckOut ,
+	          TableID ,
+	          IsPaid
+	        )
+	VALUES  ( GETDATE() , -- DateCheckIn - date
+	          GETDATE() , -- DateCheckOut - date
+	          @TableID , -- TableID - varchar(3)
+	          0  -- IsPaid - bit
+	        )
+END 
+
+EXEC dbo.USP_GetUserByUserName @UserName = '' -- varchar(20)
+
+INSERT dbo.BILL( TableID) VALUES  ( '' )
+
+INSERT dbo.BILLINFO( BillID, FoodID, FoodCount ) VALUES ( 0, '',0 )
+
+SELECT MAX(ID) FROM dbo.BILL

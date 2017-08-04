@@ -7,8 +7,9 @@
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
         Title="Coffee house management" Height="600" Width="1050"
         Closing="MainWindow_Closing" SizeChanged="Window_SizeChanged">
+    
+    
     <Grid>
-
         <Grid.RowDefinitions>
             <RowDefinition Height="20"></RowDefinition>
             <RowDefinition></RowDefinition>

@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeHouseManager"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Login" Height="170" Width="375" Focusable="True">
+        Title="Login" Height="170" Width="375" Focusable="True"
+        Closed="Window_Closed">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid FocusManager.FocusedElement="{Binding ElementName=txbUserName}">

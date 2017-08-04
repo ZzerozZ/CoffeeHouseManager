@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeHouseManager"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Add Food" Height="650" Width="525">
+        Title="Add Food" Height="150" Width="525">
     <Grid>
         <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
@@ -21,7 +21,7 @@
                 </Grid.RowDefinitions>
 
                 <TextBox x:Name="txbCount" Margin="10 5" BorderThickness="0 0 0 1" FontSize="18" TextAlignment="Center">1</TextBox>
-                <Button x:Name="btnAdd" Margin="5" Grid.Row="1">Add</Button>
+                <Button x:Name="btnAdd" Margin="5" Grid.Row="1" Click="btnAdd_Click">Add</Button>
             </Grid>
             
             <Grid>

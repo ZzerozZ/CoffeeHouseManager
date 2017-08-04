@@ -2,6 +2,7 @@
 using CoffeeHouseManager.DTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Globalization;
@@ -28,8 +29,8 @@ namespace CoffeeHouseManager
     public partial class MainWindow : Window
     {
         public static bool isAd = false;
-
-        public ToggleButton lastButton = new ToggleButton();
+        public static ObservableCollection<Bill> BillSource;
+        public static ToggleButton lastButton = new ToggleButton();
 
         public MainWindow()
         {
@@ -39,12 +40,18 @@ namespace CoffeeHouseManager
 
             this.DataContext = this;
             LoadTable();
+            AddFood.BtnAddClicked += AddForm_BtnAddClicked;
+        }
+
+        private void AddForm_BtnAddClicked(object sender, EventArgs e)
+        {
+            lsvOrderList.ItemsSource = BillSource; 
         }
 
         private void LoadTable()
         {
             bool SetLastButton = false;
-            List<TableDTO> tablelist = TableDAO.Instance.LoadTableList();
+            ObservableCollection<TableDTO> tablelist = TableDAO.Instance.LoadTableList();
             foreach(TableDTO table in tablelist)
             {
                 ToggleButton btnTable = new ToggleButton();
@@ -94,7 +101,9 @@ namespace CoffeeHouseManager
             lastButton = (sender as ToggleButton);
 
             //Display bill:
-            lsvOrderList.ItemsSource = Bill.Instance.GetBills((sender as ToggleButton).Content.ToString().Replace("Table ","").Remove(3));
+            BillSource = Bill.Instance.GetBills((sender as ToggleButton).Content.ToString().Replace("Table ", "").Remove(3));
+            lsvOrderList.ItemsSource = BillSource; 
+                
 
             CultureInfo culture = new CultureInfo("vi");
             Thread.CurrentThread.CurrentCulture = culture;

@@ -38,9 +38,9 @@ namespace CoffeeHouseManager.DTO
         public int FoodPrice { get => foodPrice; set => foodPrice = value; }
         public int Count { get => count; set => count = value; }
 
-        public List<Bill> GetBills(string _TableID)
+        public ObservableCollection<Bill> GetBills(string _TableID)
         {
-            List<Bill> list = new List<Bill>();
+            ObservableCollection<Bill> list = new ObservableCollection<Bill>();
 
             DataTable table = DataProvider.Instance.ExecuteQuery("Select * from dbo.BILL where TableID = '" + _TableID + "'");
 
@@ -67,5 +67,6 @@ namespace CoffeeHouseManager.DTO
             bill.FoodName = data.Rows[0]["Name"].ToString();
             bill.FoodPrice = int.Parse(data.Rows[0]["Price"].ToString());
         }
+        
     }
 }

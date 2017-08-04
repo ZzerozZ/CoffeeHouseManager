@@ -1,6 +1,7 @@
 ﻿using CoffeeHouseManager.DTO;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -23,9 +24,9 @@ namespace CoffeeHouseManager.DAO
             private set => instance = value;
         }
 
-        public List<TableDTO> LoadTableList()
+        public ObservableCollection<TableDTO> LoadTableList()
         {
-            List<TableDTO> list = new List<TableDTO>();
+            ObservableCollection<TableDTO> list = new ObservableCollection<TableDTO>();
 
             DataTable data = DataProvider.Instance.ExecuteQuery("select * from dbo.CTABLE");
             
