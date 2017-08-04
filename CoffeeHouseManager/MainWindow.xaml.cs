@@ -231,9 +231,26 @@ namespace CoffeeHouseManager
             }
             strBuilder.Append("\nTỔNG CỘNG: \t" + totalPrice.ToString("c"));
 
-
+            txblTotalBill.Text = (int.Parse(txblTotalBill.Text.Remove(txblTotalBill.Text.Length - 5, 5).Replace(".","")) - totalPrice).ToString("c");
 
             MessageBox.Show(strBuilder.ToString());
+            if(BillSource.Count == 0)
+            {
+                DataProvider.Instance.ExecuteQuery("UPDATE dbo.CTABLE SET IsAvailable = 0 WHERE TableID = '" + lastButton.Content.ToString().Replace("Table ", "").Remove(3) + "'");
+                lastButton.Background = Brushes.White;
+                lastButton.Tag = "Availble";
+                lastButton.Content = lastButton.Content.ToString().Replace("Using", lastButton.Tag.ToString());
+            }
+        }
+
+        private void txblTotalBill_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            foreach(Bill bill in BillSource)
+            {
+                bill.IsPaid = true;
+            }
+
+            btnDisCount_Click(new object(), new RoutedEventArgs());
         }
     }
 }
