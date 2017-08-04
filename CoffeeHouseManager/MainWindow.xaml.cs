@@ -46,6 +46,7 @@ namespace CoffeeHouseManager
         private void AddForm_BtnAddClicked(object sender, EventArgs e)
         {
             lsvOrderList.ItemsSource = BillSource; 
+                txblTotalBill.Text = GetTotalBill().ToString("c");
         }
 
         private void LoadTable()
@@ -116,7 +117,7 @@ namespace CoffeeHouseManager
 
             foreach(var item in lsvOrderList.Items)
             {
-                total += (item as Bill).FoodPrice;
+                total += (item as Bill).FoodPrice * (item as Bill).Count;
             }
 
             return total;
@@ -185,13 +186,15 @@ namespace CoffeeHouseManager
         {
             if(btnAddFood.Content.ToString() == "Open")
             {
+                DataProvider.Instance.ExecuteQuery("UPDATE dbo.CTABLE SET IsAvailable = 1 WHERE TableID = '" + lastButton.Content.ToString().Replace("Table ", "").Remove(3) + "'");
+                lastButton.Background = Brushes.YellowGreen;
+                lastButton.Tag = "Using";
+                lastButton.Content = lastButton.Content.ToString().Replace("Availble", "Using");
+                btnAddFood.Content = "Add food";
+            }
 
-            }
-            else
-            {
-                AddFood add = new AddFood();
-                add.ShowDialog();
-            }
+            AddFood add = new AddFood();
+            add.ShowDialog();
         }
     }
 }

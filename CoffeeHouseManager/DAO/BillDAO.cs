@@ -24,7 +24,7 @@ namespace CoffeeHouseManager.DAO
 
         public void InsertBill(string TableID)
         {
-            DataProvider.Instance.ExecuteQuery("INSERT dbo.BILL( TableID) VALUES  ( '" + TableID.Remove(3).ToString() + "' )");
+            DataProvider.Instance.ExecuteQuery("INSERT dbo.BILL( TableID) VALUES  ( '" + TableID.ToString() + "' )");
         }
 
         public void InsertBillInfo(string FoodID, int FoodCount)
