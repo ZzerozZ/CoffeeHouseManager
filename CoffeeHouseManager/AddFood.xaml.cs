@@ -29,7 +29,7 @@ namespace CoffeeHouseManager
 
             List<string> category = new List<string>();
             DataTable table = DataProvider.Instance.ExecuteQuery("Select FoodCategoryID, Name from dbo.FOODCATEGORY");
-            foreach(DataRow row in table.Rows)
+            foreach (DataRow row in table.Rows)
             {
                 category.Add(row[0].ToString() + " - " + row[1].ToString());
             }
@@ -50,7 +50,7 @@ namespace CoffeeHouseManager
             cmbFood.ItemsSource = food;
             cmbFood.SelectedIndex = 0;
 
-            
+
         }
 
         private void cmbFood_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,15 +67,17 @@ namespace CoffeeHouseManager
             if (data.Rows.Count == 0)
             {
                 BillDAO.Instance.InsertBill(tableID);
-                BillDAO.Instance.InsertBillInfo(cmbFood.SelectedItem.ToString().Remove(5), int.Parse(txbCount.Text));
+                BillDAO.Instance.InsertBillInfo(cmbFood.SelectedItem.ToString().Remove(5), int.Parse(txblCount.Text));
             }
             else
             {
-                DataProvider.Instance.ExecuteQuery("UPDATE dbo.BILLINFO SET FoodCount = FoodCount + " + txbCount.Text + " WHERE BillID = " + data.Rows[0]["ID"]);
+                DataProvider.Instance.ExecuteQuery("UPDATE dbo.BILLINFO SET FoodCount = FoodCount + " + txblCount.Text + " WHERE BillID = " + data.Rows[0]["ID"]);
             }
-            
+
             MainWindow.BillSource = Bill.Instance.GetBills(tableID);
             btnAddClicked(this, new EventArgs());
+
+            txblCount.Text = "1";
         }
 
         private static event EventHandler btnAddClicked;
@@ -83,6 +85,17 @@ namespace CoffeeHouseManager
         {
             add { btnAddClicked += value; }
             remove { btnAddClicked -= value; }
+        }
+
+        private void btnUp_Click(object sender, RoutedEventArgs e)
+        {
+            txblCount.Text = (int.Parse(txblCount.Text) + 1).ToString();
+        }
+
+        private void btnDown_Click(object sender, RoutedEventArgs e)
+        {
+            if(int.Parse(txblCount.Text) > 1)
+                txblCount.Text = (int.Parse(txblCount.Text) - 1).ToString();
         }
     }
 }

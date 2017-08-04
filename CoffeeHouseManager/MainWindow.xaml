@@ -79,7 +79,7 @@
                             <TextBlock Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="13" FontWeight="SemiBold">Food name</TextBlock>
                             <TextBlock Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="13" FontWeight="SemiBold">Price</TextBlock>
                             <TextBlock Grid.Column="3" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="13" FontWeight="SemiBold">Items</TextBlock>
-                            <TextBlock Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" FontSize="13" FontWeight="SemiBold">Discount</TextBlock>
+                            <Button Grid.Column="4" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="13" FontWeight="SemiBold" Background="Aqua" BorderThickness="0">Select</Button>
                         </Grid>
                         
                         <ListView x:Name="lsvOrderList" Grid.Row="1">
@@ -106,7 +106,7 @@
                                             <TextBlock x:Name="txblCount" Text="{Binding Count}" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"></TextBlock>
                                         </Border>
                                         <Border BorderBrush="LawnGreen" BorderThickness="0 0 1 1" Grid.Column="4">
-                                            <Button x:Name="btnDiscounted" Content="Discount" FontSize="10" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center"></Button>
+                                            <CheckBox x:Name="ckbDiscounted" HorizontalAlignment="Center" FontSize="10" Margin="10" VerticalAlignment="Center" IsChecked="{Binding IsPaid}"></CheckBox>
                                         </Border>
                                     </Grid>
                                 </DataTemplate>
@@ -134,7 +134,7 @@
 
                         <Button x:Name="btnAddFood" Margin="15" Grid.Column="0" IsEnabled="False" Click="btnAddFood_Click">Open</Button>
                         <Button x:Name="btnMergeTable" Margin="15" Grid.Column="1" IsEnabled="False">Merge tables</Button>
-                        <Button x:Name="btnDiscount" Margin="15" Grid.Column="2" IsEnabled="False">Discount</Button>
+                        <Button x:Name="btnDiscount" Margin="15" Grid.Column="2" IsEnabled="False" Click="btnDisCount_Click">Discount</Button>
                     </Grid>
                 </Grid>
 

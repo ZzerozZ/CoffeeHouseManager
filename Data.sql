@@ -322,3 +322,28 @@ INSERT dbo.BILL( TableID) VALUES  ( '' )
 INSERT dbo.BILLINFO( BillID, FoodID, FoodCount ) VALUES ( 0, '',0 )
 
 SELECT MAX(ID) FROM dbo.BILL
+
+DELETE FROM dbo.BILL 
+GO
+DELETE FROM dbo.BILLINFO
+
+UPDATE dbo.CTABLE SET IsAvailable = 0
+WHERE TableID = 307
+
+SELECT * FROM dbo.BILL
+GO 
+SELECT * FROM dbo.BILLINFO
+
+SELECT * FROM dbo.FOOD
+
+SELECT B.ID, BI.FoodCount FROM dbo.BILLINFO AS BI, dbo.BILL AS B WHERE B.ID = BI.BillID AND B.TableID = '103' AND BI.FoodID = 'Coca'
+
+UPDATE dbo.BILLINFO SET FoodCount = FoodCount + 1 WHERE BillID = 34
+
+SELECT * FROM dbo.BILLINFO WHERE BillID = 34
+
+SELECT B.ID, BI.FoodCount FROM dbo.BILLINFO AS BI, dbo.BILL AS B WHERE B.ID = BI.BillID AND B.TableID = '307' AND BI.FoodID = 'CKD  '
+
+UPDATE dbo.CTABLE SET IsAvailable = 1 WHERE TableID = ''
+ 
+update dbo.BILL set IsPaid = 0

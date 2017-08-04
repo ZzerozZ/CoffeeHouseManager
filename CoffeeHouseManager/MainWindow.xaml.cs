@@ -45,30 +45,30 @@ namespace CoffeeHouseManager
 
         private void AddForm_BtnAddClicked(object sender, EventArgs e)
         {
-            lsvOrderList.ItemsSource = BillSource; 
-                txblTotalBill.Text = GetTotalBill().ToString("c");
+            lsvOrderList.ItemsSource = BillSource;
+            txblTotalBill.Text = GetTotalBill().ToString("c");
         }
 
         private void LoadTable()
         {
             bool SetLastButton = false;
             ObservableCollection<TableDTO> tablelist = TableDAO.Instance.LoadTableList();
-            foreach(TableDTO table in tablelist)
+            foreach (TableDTO table in tablelist)
             {
                 ToggleButton btnTable = new ToggleButton();
 
                 btnTable.Width = btnTable.Height = 130;
 
                 //btnAddFood.
-                btnTable.Background = (!table.Status)? Brushes.White : Brushes.YellowGreen;
-                btnTable.Tag = (table.Status == true)? "Using" : "Availble";
+                btnTable.Background = (!table.Status) ? Brushes.White : Brushes.YellowGreen;
+                btnTable.Tag = (table.Status == true) ? "Using" : "Availble";
                 btnTable.Content = "Table " + table.Id + "\n\n  " + btnTable.Tag.ToString();
                 btnTable.BorderThickness = new Thickness(0.5);
                 btnTable.IsChecked = false;
                 btnTable.Click += BtnTable_Click;
-                
+
                 wpnMain.Children.Add(btnTable);
-                if(SetLastButton == false)
+                if (SetLastButton == false)
                 {
                     lastButton = btnTable;
                     SetLastButton = !SetLastButton;
@@ -89,7 +89,7 @@ namespace CoffeeHouseManager
                 btnAddFood.Content = "Open";
                 btnDiscount.IsEnabled = false;
             }
-               
+
 
             if ((sender as ToggleButton).IsChecked == false)
             {
@@ -97,14 +97,14 @@ namespace CoffeeHouseManager
             }
             if (btnAddFood.IsEnabled == false && btnMergeTable.IsEnabled == false)
                 btnAddFood.IsEnabled = btnMergeTable.IsEnabled = true;
-            
+
             lastButton.IsChecked = false;
             lastButton = (sender as ToggleButton);
 
             //Display bill:
             BillSource = Bill.Instance.GetBills((sender as ToggleButton).Content.ToString().Replace("Table ", "").Remove(3));
-            lsvOrderList.ItemsSource = BillSource; 
-                
+            lsvOrderList.ItemsSource = BillSource;
+
 
             CultureInfo culture = new CultureInfo("vi");
             Thread.CurrentThread.CurrentCulture = culture;
@@ -115,7 +115,7 @@ namespace CoffeeHouseManager
         {
             int total = 0;
 
-            foreach(var item in lsvOrderList.Items)
+            foreach (var item in lsvOrderList.Items)
             {
                 total += (item as Bill).FoodPrice * (item as Bill).Count;
             }
@@ -128,7 +128,7 @@ namespace CoffeeHouseManager
             if (!char.IsDigit((char)e.Key))
                 e.Handled = false;
         }
-        
+
         private void ChangePass_Click(object sender, RoutedEventArgs e)
         {
             ChangePasswordWindow changePass = new ChangePasswordWindow();
@@ -153,7 +153,7 @@ namespace CoffeeHouseManager
 
         private void AdminMode_Click(object sender, RoutedEventArgs e)
         {
-            if(isAd)
+            if (isAd)
             {
                 AdminWindow admin = new AdminWindow();
                 admin.ShowDialog();
@@ -169,7 +169,7 @@ namespace CoffeeHouseManager
         private bool MainWindowOpened = false;
         private void Window_SizeChanged(object sender, SizeChangedEventArgs e)
         {
-            if(MainWindowOpened == false)
+            if (MainWindowOpened == false)
             {
                 MainWindowOpened = true;
             }
@@ -184,7 +184,7 @@ namespace CoffeeHouseManager
 
         private void btnAddFood_Click(object sender, RoutedEventArgs e)
         {
-            if(btnAddFood.Content.ToString() == "Open")
+            if (btnAddFood.Content.ToString() == "Open")
             {
                 DataProvider.Instance.ExecuteQuery("UPDATE dbo.CTABLE SET IsAvailable = 1 WHERE TableID = '" + lastButton.Content.ToString().Replace("Table ", "").Remove(3) + "'");
                 lastButton.Background = Brushes.YellowGreen;
@@ -195,6 +195,45 @@ namespace CoffeeHouseManager
 
             AddFood add = new AddFood();
             add.ShowDialog();
+        }
+
+        private void btnDisCount_Click(object sender, RoutedEventArgs e)
+        {
+            if (BillSource.Count == 0)
+            {
+                MessageBox.Show("Nothing food odered!");
+                return;
+            }
+            StringBuilder strBuilder = new StringBuilder("THÔNG TIN HÓA ĐƠN\n\n");
+            int totalPrice = 0, index = 1;
+            for(int i = 0; i < BillSource.Count; i++)
+            {
+                if(BillSource[i].IsPaid == true)
+                {
+                    int price = BillSource[i].Count * BillSource[i].FoodPrice;
+                    strBuilder.Append(index.ToString() + ". " + BillSource[i].FoodName + "(" + BillSource[i].Count + ") :\t" + price.ToString("c") + "\n");
+                    totalPrice += price;
+
+                    //Delete info:
+                    DataProvider.Instance.ExecuteQuery("DELETE FROM dbo.BILLINFO WHERE BillID = " + BillSource[i].ID);
+                    DataProvider.Instance.ExecuteQuery("DELETE FROM dbo.BILL WHERE ID = " + BillSource[i].ID);
+
+                    BillSource.RemoveAt(i);
+                    i--;
+                    index++;
+                }
+            }
+
+            if (totalPrice == 0)
+            {
+                MessageBox.Show("Discount list can't be less than 1");
+                return;
+            }
+            strBuilder.Append("\nTỔNG CỘNG: \t" + totalPrice.ToString("c"));
+
+
+
+            MessageBox.Show(strBuilder.ToString());
         }
     }
 }

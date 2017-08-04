@@ -20,7 +20,23 @@
                     <RowDefinition></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBox x:Name="txbCount" Margin="10 5" BorderThickness="0 0 0 1" FontSize="18" TextAlignment="Center">1</TextBox>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock x:Name="txblCount" FontSize="25" VerticalAlignment="Center" TextAlignment="Center">1</TextBlock>
+                    <Grid Grid.Column="1" Margin="0 0 5 0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+
+                        <Button x:Name="btnUp" Click="btnUp_Click">+</Button>
+                        <Button x:Name="btnDown" Grid.Row="1" Click="btnDown_Click">-</Button>
+                    </Grid>
+                </Grid>               
                 <Button x:Name="btnAdd" Margin="5" Grid.Row="1" Click="btnAdd_Click">Add</Button>
             </Grid>
             
@@ -42,7 +58,7 @@
                     <ComboBox x:Name="cmbFood" Height="25" Text="Food name" Grid.Column="1" Width="200" Margin="5" SelectionChanged="cmbFood_SelectionChanged"></ComboBox>
                 </Grid>
                 <Grid Grid.Row="1">
-                    <TextBox x:Name="txbSearch" Margin="10 5 20 5" BorderThickness="0 0 0 1" FontSize="17"></TextBox>
+                    <TextBox x:Name="txbSearch" Margin="10 5 20 5" BorderThickness="0" FontSize="17" IsReadOnly="True"></TextBox>
 
                 </Grid>
             </Grid>
