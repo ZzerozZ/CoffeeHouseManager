@@ -201,7 +201,10 @@ namespace CoffeeHouseManager
         {
             if (BillSource.Count == 0)
             {
-                MessageBox.Show("Nothing food odered!");
+                if(MessageBox.Show("Nothing food odered! Do you want to clear this table?", "Warning", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes) == MessageBoxResult.Yes)
+                {
+                    goto clear_table;
+                }
                 return;
             }
             StringBuilder strBuilder = new StringBuilder("THÔNG TIN HÓA ĐƠN\n\n");
@@ -234,6 +237,8 @@ namespace CoffeeHouseManager
             txblTotalBill.Text = (int.Parse(txblTotalBill.Text.Remove(txblTotalBill.Text.Length - 5, 5).Replace(".","")) - totalPrice).ToString("c");
 
             MessageBox.Show(strBuilder.ToString());
+            
+clear_table:
             if(BillSource.Count == 0)
             {
                 DataProvider.Instance.ExecuteQuery("UPDATE dbo.CTABLE SET IsAvailable = 0 WHERE TableID = '" + lastButton.Content.ToString().Replace("Table ", "").Remove(3) + "'");

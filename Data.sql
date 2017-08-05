@@ -346,4 +346,4 @@ SELECT B.ID, BI.FoodCount FROM dbo.BILLINFO AS BI, dbo.BILL AS B WHERE B.ID = BI
 
 UPDATE dbo.CTABLE SET IsAvailable = 1 WHERE TableID = ''
  
-update dbo.BILL set IsPaid = 0
+update dbo.FOOD SET Price = 10000 where FoodID = 'CKD'

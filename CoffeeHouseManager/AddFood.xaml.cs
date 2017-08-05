@@ -3,6 +3,7 @@ using CoffeeHouseManager.DTO;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Data;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace CoffeeHouseManager
     /// </summary>
     public partial class AddFood : Window
     {
+        //Need to repair!
+
         public AddFood()
         {
             InitializeComponent();
@@ -36,6 +39,21 @@ namespace CoffeeHouseManager
 
             cmbCategory.ItemsSource = category;
             cmbCategory.SelectedIndex = 0;
+
+            LoadCategoryToListView();
+            LoadFoodToListView();
+        }
+
+        private void LoadCategoryToListView()
+        {
+            ObservableCollection<Category> list = Category.Instance.GetCategory();
+            lsbCategory.ItemsSource = list;
+        }
+
+        private void LoadFoodToListView()
+        {
+            ObservableCollection<Food> list = Food.Instance.GetFood();
+            lsbFood.ItemsSource = list;
         }
 
         private void cmbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -96,6 +114,16 @@ namespace CoffeeHouseManager
         {
             if(int.Parse(txblCount.Text) > 1)
                 txblCount.Text = (int.Parse(txblCount.Text) - 1).ToString();
+        }
+
+        private void lsvItemCategory_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void lsvItemFood_Click(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

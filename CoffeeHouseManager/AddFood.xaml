@@ -5,9 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoffeeHouseManager"
         mc:Ignorable="d" WindowStartupLocation="CenterScreen"
-        Title="Add Food" Height="150" Width="525">
+        Title="Add Food" Height="400" Width="525">
     <Grid>
-        <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Grid Margin="15 80 15 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <ScrollViewer>
+                <ListBox x:Name="lsbCategory" HorizontalAlignment="Stretch">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5" PreviewMouseDown="lsvItemCategory_Click">
+                                <Border BorderThickness="0 0 0 1">
+                                    <TextBlock Text="{Binding Name}"></TextBlock>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+
+            <ScrollViewer Grid.Column="1">
+                <ListBox x:Name="lsbFood">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Margin="5" PreviewMouseDown="lsvItemFood_Click">
+                                <Border BorderThickness="0 0 0 1">
+                                    <TextBlock Text="{Binding Name}"></TextBlock>
+                                </Border>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </ScrollViewer>
+            
+        </Grid>
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>
                 <ColumnDefinition Width="80"></ColumnDefinition>
@@ -39,6 +74,7 @@
                 </Grid>               
                 <Button x:Name="btnAdd" Margin="5" Grid.Row="1" Click="btnAdd_Click">Add</Button>
             </Grid>
+
             
             <Grid>
                 <Grid.RowDefinitions>
