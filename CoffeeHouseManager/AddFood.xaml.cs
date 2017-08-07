@@ -26,6 +26,8 @@ namespace CoffeeHouseManager
     {
         //Need to repair!
 
+        ObservableCollection<Category> ListCategory = new ObservableCollection<Category>();
+
         public AddFood()
         {
             InitializeComponent();
@@ -40,15 +42,22 @@ namespace CoffeeHouseManager
             cmbCategory.ItemsSource = category;
             cmbCategory.SelectedIndex = 0;
 
-            LoadCategoryToListView();
-            LoadFoodToListView();
+            LoadFoodCategory();
+            lsbCategory.ItemsSource = ListCategory;
+            lsbCategory.SelectedIndex = 0;
         }
 
-        private void LoadCategoryToListView()
+
+        public void LoadFoodCategory()
         {
-            ObservableCollection<Category> list = Category.Instance.GetCategory();
-            lsbCategory.ItemsSource = list;
+            ListCategory = Category.Instance.GetCategory();
+
+            foreach(Category cate in ListCategory)
+            {
+                cate.Foods = Food.Instance.GetFood(cate.ID);
+            }
         }
+
 
         private void LoadFoodToListView()
         {
@@ -118,12 +127,17 @@ namespace CoffeeHouseManager
 
         private void lsvItemCategory_Click(object sender, MouseButtonEventArgs e)
         {
-
+            
         }
 
         private void lsvItemFood_Click(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void lsbCategory_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            lsbFood.ItemsSource = ListCategory[lsbCategory.SelectedIndex].Foods;
         }
     }
 }

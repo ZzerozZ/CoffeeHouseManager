@@ -26,9 +26,11 @@ namespace CoffeeHouseManager.DTO
 
         public string ID { get => iD; set => iD = value; }
         public string Name { get => name; set => name = value; }
+        public ObservableCollection<Food> Foods { get => foods; set => foods = value; }
 
         private string iD;
         private string name;
+        private ObservableCollection<Food> foods;
 
         public Category() { }
         public Category(string _id, string _name)
