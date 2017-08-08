@@ -27,7 +27,7 @@
                     <ListBox x:Name="lsbCategory" HorizontalAlignment="Stretch" SelectionChanged="lsbCategory_SelectionChanged">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="5" PreviewMouseDown="lsvItemCategory_Click">
+                                <Grid Margin="5">
                                     <Border BorderThickness="0 0 0 1">
                                         <TextBlock Text="{Binding Name}"></TextBlock>
                                     </Border>
@@ -42,9 +42,18 @@
                     <ListBox x:Name="lsbFood">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
-                                <Grid Margin="5" PreviewMouseDown="lsvItemFood_Click">
-                                    <Border BorderThickness="0 0 0 1">
-                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                <Grid Margin="5 5 5 0" HorizontalAlignment="Stretch">
+                                    <Border BorderThickness="0 0 0 1" HorizontalAlignment="Stretch">
+                                        <Grid HorizontalAlignment="Stretch">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="250"></ColumnDefinition>
+                                                <ColumnDefinition Width="52"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+
+                                            <TextBlock Text="{Binding Name}" Grid.Column="0" HorizontalAlignment="Stretch"></TextBlock>
+                                            <Button x:Name="AddFood" Margin="0 0 15 0" Grid.Column="1" Click="btnAddFoodInFoodList_Click" HorizontalAlignment="Stretch">+</Button>
+                                        </Grid>
+                                        
                                     </Border>
                                 </Grid>
                             </DataTemplate>
@@ -55,21 +64,23 @@
             </Grid>
 
             <ScrollViewer Grid.Row="2" Margin="0 10">
-                <ListView>
+                <ListView x:Name="lsvSelectedFood">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
+                            <Grid Margin="5">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="40"></ColumnDefinition>
                                     <ColumnDefinition></ColumnDefinition>
                                     <ColumnDefinition Width="40"></ColumnDefinition>
                                     <ColumnDefinition Width="100"></ColumnDefinition>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
 
                                 <TextBlock>STT</TextBlock>
                                 <TextBlock Text="{Binding Name}" Grid.Column="1"></TextBlock>
-                                <TextBlock Text="{Binding Count}" Grid.Column="2"></TextBlock>
-                                <TextBlock Text="{Binding Price}" Grid.Column="3"</TextBlock>
+                                <TextBlock Text= "1" Grid.Column="2"></TextBlock>
+                                <TextBlock Text="{Binding Price}" Grid.Column="3"></TextBlock>
+                                <Button x:Name="btnRemoveFood" Click="btnRemoveFoodInFoodList_Click" Grid.Column="4">-</Button>
                             </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
